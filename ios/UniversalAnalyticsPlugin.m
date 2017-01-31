@@ -26,7 +26,11 @@
             [GAI sharedInstance].dispatchInterval = [dispatchPeriod doubleValue];
         else 
             [GAI sharedInstance].dispatchInterval = 30;
-
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        if(tracker){
+            [[GAI sharedInstance] removeTrackerByName:[tracker name]];
+        }
         [[GAI sharedInstance] trackerWithTrackingId:accountId];
 
         _trackerStarted = true;
